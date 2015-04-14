@@ -1,1 +1,24 @@
 <?php
+
+use Drupal\views\Views;
+
+/**
+ * Implements hook_theme().
+ *
+ * Register views theming functions and those that are defined via views plugin
+ * definitions.
+ */
+function views_bootstrap_theme($existing, $type, $theme, $path) {
+  $plugins = Views::getPluginDefinitions();
+  $hooks = array();
+
+  foreach ($plugins['style'] as $style) {
+    if ($style['provider'] == 'views_bootstrap') {
+      $hooks[$style['theme']] = array(
+        'file' => 'views_bootstrap.theme.inc',
+      );
+    }
+  }
+
+  return $hooks;
+}
