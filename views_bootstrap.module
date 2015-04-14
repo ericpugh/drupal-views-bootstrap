@@ -15,7 +15,8 @@ function views_bootstrap_theme($existing, $type, $theme, $path) {
   foreach ($plugins['style'] as $style) {
     if ($style['provider'] == 'views_bootstrap') {
       $hooks[$style['theme']] = array(
-        'file' => 'views_bootstrap.theme.inc',
+        'file' => $style['theme'] . '.theme.inc',
+        'path' => $path . '/themes',
       );
     }
   }
