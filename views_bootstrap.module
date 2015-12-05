@@ -3,23 +3,25 @@
 use Drupal\views\Views;
 
 /**
- * Implements hook_theme().
- *
- * Register views theming functions and those that are defined via views plugin
- * definitions.
+ * Implements hook_theme_registry_alter().
  */
-function views_bootstrap_theme($existing, $type, $theme, $path) {
+function views_bootstrap_theme_registry_alter(&$theme_registry) {
   $plugins = Views::getPluginDefinitions();
-  $hooks = array();
+  $path = drupal_get_path('module', 'views_bootstrap');
 
   foreach ($plugins['style'] as $style) {
     if ($style['provider'] == 'views_bootstrap') {
-      $hooks[$style['theme']] = array(
-        'file' => $style['theme'] . '.theme.inc',
-        'path' => $path . '/themes',
-      );
+      $theme = $style['theme'];
+
+      switch ($theme) {
+        case 'views_bootstrap_table':
+          $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_views_view_table';
+
+        default:
+          $theme_registry[$theme]['path'] = $path . '/templates/' . $theme;
+          $theme_registry[$theme]['includes'][] = $theme_registry[$theme]['path'] . '/theme.inc';
+          $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_' . $theme;
+      }
     }
   }
-
-  return $hooks;
 }

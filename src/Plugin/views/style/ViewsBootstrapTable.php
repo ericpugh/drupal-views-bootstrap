@@ -19,18 +19,11 @@ use Drupal\views\Plugin\views\style\Table;
  *   id = "views_bootstrap_table",
  *   title = @Translation("Bootstrap Table"),
  *   help = @Translation("Displays rows in a Bootstrap table."),
- *   theme = "views_bootstrap_view_table",
+ *   theme = "views_bootstrap_table",
  *   display_types = {"normal"}
  * )
  */
 class ViewsBootstrapTable extends Table {
-  /**
-   * Does the style plugin allows to use style plugins.
-   *
-   * @var bool
-   */
-  protected $usesRowPlugin = TRUE;
-
   /**
    * Definition.
    */
