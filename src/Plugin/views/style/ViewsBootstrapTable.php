@@ -30,6 +30,7 @@ class ViewsBootstrapTable extends Table {
   protected function defineOptions() {
     $options = parent::defineOptions();
     $options['bootstrap_styles'] = array('default' => array());
+    $options['responsive'] = array('default' => FALSE);
 
     return $options;
   }
@@ -40,15 +41,22 @@ class ViewsBootstrapTable extends Table {
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
     parent::buildOptionsForm($form, $form_state);
 
+    $form['responsive'] = array(
+      '#type' => 'checkbox',
+      '#title' => $this->t('Responsive'),
+      '#default_value' => $this->options['responsive'],
+      '#description' => $this->t('To make a table scroll horizontally on small devices.'),
+    );
+
     $form['bootstrap_styles'] = array(
       '#title' => t('Bootstrap styles'),
       '#type' => 'checkboxes',
       '#default_value' => $this->options['bootstrap_styles'],
       '#options' => array(
-        'striped' => t('Striped'),
-        'bordered' => t('Bordered'),
-        'hover' => t('Hover'),
-        'condensed' => t('Condensed'),
+        'striped' => $this->t('Striped'),
+        'bordered' => $this->t('Bordered'),
+        'hover' => $this->t('Hover'),
+        'condensed' => $this->t('Condensed'),
       ),
     );
   }
