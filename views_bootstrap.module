@@ -16,6 +16,9 @@ function views_bootstrap_theme_registry_alter(&$theme_registry) {
       switch ($theme) {
         case 'views_bootstrap_table':
           $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_views_view_table';
+          
+        case 'views_bootstrap_accordion':
+          $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_views_view_accordion';
 
         default:
           $theme_registry[$theme]['path'] = $path . '/templates/' . $theme;
