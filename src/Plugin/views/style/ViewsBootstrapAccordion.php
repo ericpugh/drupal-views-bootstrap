@@ -30,7 +30,14 @@ class ViewsBootstrapAccordion extends StylePluginBase {
    * @var bool
    */
   protected $usesFields = TRUE;
-  
+
+  /**
+   * Does the style plugin allows to use style plugins.
+   *
+   * @var bool
+   */
+  protected $usesRowPlugin = TRUE;
+
   /**
    * Definition.
    */
