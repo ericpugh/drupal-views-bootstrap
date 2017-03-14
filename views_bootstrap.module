@@ -29,6 +29,10 @@ function views_bootstrap_theme_registry_alter(&$theme_registry) {
         case 'views_bootstrap_carousel':
           $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_views_view_carousel';
           break;
+
+        case 'views_bootstrap_list_group':
+          $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_views_view_list_group';
+          break;
       }
       
       $theme_registry[$theme]['path'] = $path . '/templates/' . $theme;
