@@ -30,6 +30,11 @@ function views_bootstrap_theme_registry_alter(&$theme_registry) {
           $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_views_view_carousel';
           break;
 
+        case 'views_bootstrap_media_object':
+          $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_views_view_media_object';
+          break;
+
+
         case 'views_bootstrap_list_group':
           $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_views_view_list_group';
           break;
