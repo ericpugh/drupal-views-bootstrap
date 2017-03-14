@@ -81,7 +81,7 @@ class ViewsBootstrapGrid extends StylePluginBase {
    *    An array of all the sanitized columns.
    */
   public function sanitizeColumns($columns, $fields = NULL) {
-    $sanitized = array();
+    $sanitized = [];
     if ($fields === NULL) {
       $fields = $this->displayHandler->getOption('fields');
     }
@@ -121,25 +121,25 @@ class ViewsBootstrapGrid extends StylePluginBase {
   protected function defineOptions() {
     $options = parent::defineOptions();
 
-    $options['alignment'] = array('default' => 'horizontal');
-    $options['columns'] = array('default' => '4');
-    $options['col_xs'] = array('default' => 'col-xs-12');
-    $options['col_sm'] = array('default' => 'col-sm-12');
-    $options['col_md'] = array('default' => 'col-md-12');
-    $options['col_lg'] = array('default' => 'col-lg-12');
-    $options['automatic_width'] = array('default' => TRUE);
-    $options['col_class_custom'] = array('default' => '');
-    $options['col_class_default'] = array('default' => TRUE);
-    $options['row_class_custom'] = array('default' => '');
-    $options['row_class_default'] = array('default' => TRUE);
-    $options['default'] = array('default' => '');
-    $options['info'] = array('default' => array());
-    $options['override'] = array('default' => TRUE);
-    $options['sticky'] = array('default' => FALSE);
-    $options['order'] = array('default' => 'asc');
-    $options['caption'] = array('default' => '');
-    $options['summary'] = array('default' => '');
-    $options['description'] = array('default' => '');
+    $options['alignment'] = ['default' => 'horizontal'];
+    $options['columns'] = ['default' => '4'];
+    $options['col_xs'] = ['default' => 'col-xs-12'];
+    $options['col_sm'] = ['default' => 'col-sm-12'];
+    $options['col_md'] = ['default' => 'col-md-12'];
+    $options['col_lg'] = ['default' => 'col-lg-12'];
+    $options['automatic_width'] = ['default' => TRUE];
+    $options['col_class_custom'] = ['default' => ''];
+    $options['col_class_default'] = ['default' => TRUE];
+    $options['row_class_custom'] = ['default' => ''];
+    $options['row_class_default'] = ['default' => TRUE];
+    $options['default'] = ['default' => ''];
+    $options['info'] = ['default' => []];
+    $options['override'] = ['default' => TRUE];
+    $options['sticky'] = ['default' => FALSE];
+    $options['order'] = ['default' => 'asc'];
+    $options['caption'] = ['default' => ''];
+    $options['summary'] = ['default' => ''];
+    $options['description'] = ['default' => ''];
     return $options;
   }
 
@@ -149,24 +149,24 @@ class ViewsBootstrapGrid extends StylePluginBase {
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
     parent::buildOptionsForm($form, $form_state);
 
-    $form['alignment'] = array(
+    $form['alignment'] = [
       '#type' => 'radios',
-      '#title' => t('Alignment'),
-      '#options' => array(
-        'horizontal' => t('Horizontal'),
-        'vertical' => t('Vertical'),
-      ),
-      '#description' => t('Horizontal alignment will place items starting in the upper left and moving right.
+      '#title' => $this->t('Alignment'),
+      '#options' => [
+        'horizontal' => $this->t('Horizontal'),
+        'vertical' => $this->t('Vertical'),
+      ],
+      '#description' => $this->t('Horizontal alignment will place items starting in the upper left and moving right.
       Vertical alignment will place items starting in the upper left and moving down.'),
       '#default_value' => $this->options['alignment'],
-    );
+    ];
 
-    $form['columns'] = array(
+    $form['columns'] = [
       '#type' => 'select',
-      '#title' => t('Number of columns per row'),
+      '#title' => $this->t('Number of columns per row'),
       '#required' => TRUE,
       '#default_value' => isset($this->options['columns']) ? $this->options['columns'] : NULL,
-      '#options' => array(
+      '#options' => [
         1 => 1,
         2 => 2,
         3 => 3,
@@ -174,24 +174,24 @@ class ViewsBootstrapGrid extends StylePluginBase {
         6 => 6,
         12 => 12,
         999 => $this->t('All'),
-      ),
-    );
+      ],
+    ];
 
-    foreach (array('xs', 'sm', 'md', 'lg') as $size) {
-      $form["col_${size}"] = array(
+    foreach (['xs', 'sm', 'md', 'lg'] as $size) {
+      $form["col_${size}"] = [
         '#type' => 'select',
-        '#title' => t("Number of columns (col-${size})"),
+        '#title' => $this->t("Number of columns (col-${size})"),
         '#required' => TRUE,
         '#default_value' => isset($this->options["col_${size}"]) ? $this->options["col_${size}"] : NULL,
-        '#options' => array(
+        '#options' => [
           "col-${size}-12" => 1,
           "col-${size}-6" => 2,
           "col-${size}-4" => 3,
           "col-${size}-3" => 4,
           "col-${size}-2" => 6,
           "col-${size}-1" => 12,
-        ),
-      );
+        ],
+      ];
     }
   }
 

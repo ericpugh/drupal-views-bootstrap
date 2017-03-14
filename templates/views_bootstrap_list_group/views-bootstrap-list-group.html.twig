@@ -19,7 +19,7 @@
   ]
 %}
 
-<ul id={{ id }} {{ attributes.addClass(classes) }}>
+<ul id="{{ id }}" {{ attributes.addClass(classes) }}>
     {% for key, row in rows %}
       <li class="list-group-item">
           {% if row.title %}

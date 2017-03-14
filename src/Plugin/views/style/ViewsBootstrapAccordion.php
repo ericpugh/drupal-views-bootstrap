@@ -44,7 +44,7 @@ class ViewsBootstrapAccordion extends StylePluginBase {
   protected function defineOptions() {
     $options = parent::defineOptions();
     
-    $options['title_field'] = array('default' => array());
+    $options['title_field'] = ['default' => []];
 
     return $options;
   }
@@ -55,13 +55,13 @@ class ViewsBootstrapAccordion extends StylePluginBase {
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
     parent::buildOptionsForm($form, $form_state);
     
-    $form['title_field'] = array(
+    $form['title_field'] = [
       '#type' => 'select',
       '#title' => $this->t('Title field'),
       '#options' => $this->displayHandler->getFieldLabels(TRUE),
       '#required' => TRUE,
       '#default_value' => $this->options['title_field'],
       '#description' => $this->t('Select the field that will be used as the title.'),
-    );
+    ];
   }
 }

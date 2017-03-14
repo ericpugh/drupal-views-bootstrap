@@ -3,7 +3,9 @@
  * @file
  * Preprocessors and helper functions to make theming easier.
  */
- 
+
+use Drupal\views_bootstrap\ViewsBootstrapStyleHelper;
+
 /**
  * Prepares variables for views accordion templates.
  *
@@ -15,8 +17,9 @@
  *   - rows: The raw row data.
  */
 function template_preprocess_views_bootstrap_accordion(&$vars) {
-  $title_field = $vars['view']->style_plugin->options['title_field'];
-  
+  $view = $vars['view'];
+  $vars['id'] = ViewsBootstrapStyleHelper::getUniqueId($view);
+  $title_field = $view->style_plugin->options['title_field'];
   $vars['attributes']['class'][] = 'panel-group';
   
   foreach ($vars['rows'] as $id => $row) {
