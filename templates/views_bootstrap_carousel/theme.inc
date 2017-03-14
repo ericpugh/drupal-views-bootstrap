@@ -19,6 +19,8 @@ use Drupal\views_bootstrap\ViewsBootstrapStyleHelper;
 function template_preprocess_views_bootstrap_carousel(&$vars) {
   $view = $vars['view'];
   $vars['id'] = ViewsBootstrapStyleHelper::getUniqueId($view);
+  $vars['attributes']['class'][] = 'views-bootstrap-media-object';
+  $vars['attributes']['class'][] = 'media-list';
 
   // Carousel options.
   $vars['interval'] = $view->style_plugin->options['interval'];

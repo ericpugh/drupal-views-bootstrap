@@ -1,51 +1,38 @@
-<div id="views-bootstrap-media-object" {{ attributes.addClass(classes) }}>
-  {% for key, row in rows -%}
-  	<div class="media">
-      <div class="media-left media-middle">
-        <a href="#" data-parent="#views-bootstrap-media-object">
-          <img alt="" class="media-object" src="{{row.image}}" style="width: 64px; height: 64px;">
-        </a>
-      </div>
-      <div class="media-body">
-        <h4 class="media-heading">
-          {{row.heading}}
-          {% if row.new_content_flag %}
-             <span class="label label-default">New</span>
-          {% endif %}
-        </h4>
-        {{row.body}}
-        {% if row.tags %}
-        <div class="">
-          {{row.tags}}
-        </div>
-        {% endif %}
-        <div class="">
-          <p>
-          <small>
-          {% if row.created_ts %} 
-            Written {{row.created_ts}} 
-          {% endif %}
-          {% if row.created_by %} 
-             by {{row.created_by}}.   
-          {% endif %}
-          {% if row.edit_ts %} 
-            Edited {{row.edit_ts}} 
-          {% endif %}
-          </small>
-          </p>
-        </div>
-        <div class="">
-          {% if row.comment_link %}
-            {{row.comment_link}} {{row.comment_count}} 
-          {% endif %}
-          {% if row.add_comment %} 
-            {{row.add_comment}} 
-          {% endif %}
-          {% if row.edit_link %} 
-            {{row.edit_link}}
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  {%- endfor %}
+{# @TODO: How to remove bootstrap theme's default .img-responsive class on image fields, which doesn't work with .media-left, etc. For now, I'm using .pull-left as a fix. #}
+<div id="{{ id }}" {{ attributes.addClass(classes) }}>
+    {% for key, row in rows -%}
+          <div class="media">
+
+              {% if row.image_class == "media-left" %}
+                  <div class="pull-left">
+                      {{ row.image }}
+                  </div>
+              {% endif %}
+
+              {% if row.image_class == "media-middle" %}
+                  <div class="media-middle">
+                      {{ row.image }}
+                  </div>
+              {% endif %}
+
+              <div class="media-body">
+                    {% if row.heading %}
+                          <h4 class="media-heading">
+                              {{ row.heading }}
+                          </h4>
+                    {% endif %}
+                    {% if row.body %}
+                        {{ row.body }}
+                    {% endif %}
+
+                  {% if row.image_class == "media-right" %}
+                      <div class="pull-right">
+                          {{ row.image }}
+                      </div>
+                  {% endif %}
+
+              </div>
+          </div>
+    {%- endfor %}
 </div>
+
