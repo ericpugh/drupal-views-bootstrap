@@ -1,7 +1,7 @@
 name: Views Bootstrap
 type: module
-description: 'Bootstrap Components.'
+description: 'Views Twitter Bootstrap Components.'
 package: Views
 core: 8.x
 dependencies:
-  - views
+  - drupal:views

@@ -1,10 +1,11 @@
 <?php
+
 /**
  * @file
  * Preprocessors and helper functions to make theming easier.
  */
 
-use Drupal\Component\Utility\Html;
+use Drupal\views_bootstrap\ViewsBootstrapStyleHelper;
 
 /**
  * Prepares variables for views carousel template.
@@ -16,26 +17,28 @@ use Drupal\Component\Utility\Html;
  *   - view: A ViewExecutable object.
  *   - rows: The raw row data.
  */
-function template_preprocess_views_bootstrap_carousel(&$vars) {
-  $id = $vars['view']->element['#name'] . '-' . $vars['view']->element['#display_id'];
-  $vars['id'] = Html::getUniqueId('views-bootstrap-carousel-' . $id);
+function template_preprocess_views_bootstrap_carousel(array &$vars) {
+  $view = $vars['view'];
+  $vars['id'] = ViewsBootstrapStyleHelper::getUniqueId($view);
+  $vars['attributes']['class'][] = 'views-bootstrap-media-object';
+  $vars['attributes']['class'][] = 'media-list';
 
   // Carousel options.
-  $vars['interval'] = $vars['view']->style_plugin->options['interval'];
-  $vars['navigation'] = $vars['view']->style_plugin->options['navigation'];
-  $vars['indicators'] = $vars['view']->style_plugin->options['indicators'];
-  $vars['pause'] = $vars['view']->style_plugin->options['pause'] ? 'hover' : FALSE;
-  $vars['wrap'] = $vars['view']->style_plugin->options['wrap'];
+  $vars['interval'] = $view->style_plugin->options['interval'];
+  $vars['navigation'] = $view->style_plugin->options['navigation'];
+  $vars['indicators'] = $view->style_plugin->options['indicators'];
+  $vars['pause'] = $view->style_plugin->options['pause'] ? 'hover' : FALSE;
+  $vars['wrap'] = $view->style_plugin->options['wrap'];
 
   // Carousel rows.
-  $image = $vars['view']->style_plugin->options['image'];
-  $title = $vars['view']->style_plugin->options['title'];
-  $description = $vars['view']->style_plugin->options['description'];
+  $image = $view->style_plugin->options['image'];
+  $title = $view->style_plugin->options['title'];
+  $description = $view->style_plugin->options['description'];
 
   foreach ($vars['rows'] as $id => $row) {
-    $vars['rows'][$id] = array();
-    $vars['rows'][$id]['image'] = $vars['view']->style_plugin->getField($id, $image);
-    $vars['rows'][$id]['title'] = $vars['view']->style_plugin->getField($id, $title);
-    $vars['rows'][$id]['description'] = $vars['view']->style_plugin->getField($id, $description);
+    $vars['rows'][$id] = [];
+    $vars['rows'][$id]['image'] = $view->style_plugin->getField($id, $image);
+    $vars['rows'][$id]['title'] = $view->style_plugin->getField($id, $title);
+    $vars['rows'][$id]['description'] = $view->style_plugin->getField($id, $description);
   }
 }

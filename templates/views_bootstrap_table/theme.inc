@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Preprocessors and helper functions to make theming easier.
@@ -14,7 +15,7 @@
  *   - view: A ViewExecutable object.
  *   - rows: The raw row data.
  */
-function template_preprocess_views_bootstrap_table(&$vars) {
+function template_preprocess_views_bootstrap_table(array &$vars) {
   $vars['responsive'] = $vars['view']->style_plugin->options['responsive'];
 
   $vars['attributes']['class'][] = 'table';
