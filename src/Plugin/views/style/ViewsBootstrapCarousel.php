@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Definition of Drupal\views_bootstrap\Plugin\views\style\ViewsBootstrapCarousel.
- */
-
 namespace Drupal\views_bootstrap\Plugin\views\style;
 
 use Drupal\Core\Form\FormStateInterface;
@@ -113,4 +108,5 @@ class ViewsBootstrapCarousel extends StylePluginBase {
       '#default_value' => $this->options['description'],
     ];
   }
+
 }

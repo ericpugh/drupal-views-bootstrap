@@ -9,7 +9,8 @@ CONTENTS OF THIS FILE
 INTRODUCTION
 ------------
 
-The Views Bootstrap module adds styles to Views to output the results of a view as several common Twitter Bootstrap components.
+The Views Bootstrap module adds styles to Views to output the results of a view 
+as several common Twitter Bootstrap components.
 
  * For a full description of the module, visit the project page:
    https://www.drupal.org/project/views_bootstrap

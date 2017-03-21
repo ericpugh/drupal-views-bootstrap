@@ -1,10 +1,10 @@
 <?php
+
 /**
  * @file
  * Preprocessors and helper functions to make theming easier.
  */
 
-use Drupal\Core\Template\Attribute;
 use Drupal\views_bootstrap\ViewsBootstrapStyleHelper;
 
 /**
@@ -12,12 +12,12 @@ use Drupal\views_bootstrap\ViewsBootstrapStyleHelper;
  *
  * Default template: views-bootstrap-grid.html.twig.
  *
- * @param array $variables
+ * @param array $vars
  *   An associative array containing:
  *   - view: A ViewExecutable object.
  *   - rows: The raw row data.
  */
-function template_preprocess_views_bootstrap_grid(&$vars) {
+function template_preprocess_views_bootstrap_grid(array &$vars) {
   $view = $vars['view'];
   $vars['id'] = ViewsBootstrapStyleHelper::getUniqueId($view);
   $vars['attributes']['class'][] = 'grid';
@@ -38,8 +38,10 @@ function template_preprocess_views_bootstrap_grid(&$vars) {
  * Get the amount of items from the string.
  *
  * @param string $size
+ *   Bootstrap grid size xs|sm|md|lg.
  *
- * @return int|FALSE
+ * @return int|false
+ *   Number of columns in a 12 column grid or false.
  */
 function _views_bootstrap_get_size($size) {
   if (preg_match('~col-[a-z]{2}-([0-9]*)~', $size, $matches)) {

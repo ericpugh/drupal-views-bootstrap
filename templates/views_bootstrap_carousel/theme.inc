@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Preprocessors and helper functions to make theming easier.
@@ -16,7 +17,7 @@ use Drupal\views_bootstrap\ViewsBootstrapStyleHelper;
  *   - view: A ViewExecutable object.
  *   - rows: The raw row data.
  */
-function template_preprocess_views_bootstrap_carousel(&$vars) {
+function template_preprocess_views_bootstrap_carousel(array &$vars) {
   $view = $vars['view'];
   $vars['id'] = ViewsBootstrapStyleHelper::getUniqueId($view);
   $vars['attributes']['class'][] = 'views-bootstrap-media-object';
@@ -35,7 +36,7 @@ function template_preprocess_views_bootstrap_carousel(&$vars) {
   $description = $view->style_plugin->options['description'];
 
   foreach ($vars['rows'] as $id => $row) {
-    $vars['rows'][$id] = array();
+    $vars['rows'][$id] = [];
     $vars['rows'][$id]['image'] = $view->style_plugin->getField($id, $image);
     $vars['rows'][$id]['title'] = $view->style_plugin->getField($id, $title);
     $vars['rows'][$id]['description'] = $view->style_plugin->getField($id, $description);

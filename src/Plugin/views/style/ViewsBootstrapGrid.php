@@ -22,11 +22,15 @@ use Drupal\Component\Utility\Html;
 class ViewsBootstrapGrid extends StylePluginBase {
   /**
    * Overrides \Drupal\views\Plugin\views\style\StylePluginBase::usesRowPlugin.
+   *
+   * @var bool
    */
   protected $usesRowPlugin = TRUE;
 
   /**
    * Overrides \Drupal\views\Plugin\views\style\StylePluginBase::usesRowClass.
+   *
+   * @var bool
    */
   protected $usesRowClass = TRUE;
 
@@ -57,35 +61,36 @@ class ViewsBootstrapGrid extends StylePluginBase {
   }
 
   /**
-   * Normalize a list of columns based upon the fields that are
-   * available. This compares the fields stored in the style handler
+   * Normalize a list of columns.
+   *
+   * Normalize columns based upon the fields that are available. This compares
+   * the fields stored in the style handler
    * to the list of fields actually in the view, removing fields that
    * have been removed and adding new fields in their own column.
-   *
    * - Each field must be in a column.
-   * - Each column must be based upon a field, and that field
-   *   is somewhere in the column.
+   * - Each column must be based upon a field, and that field is somewhere in
+   * the column.
    * - Any fields not currently represented must be added.
    * - Columns must be re-ordered to match the fields.
    *
-   * @param $columns
+   * @param array $columns
    *   An array of all fields; the key is the id of the field and the
    *   value is the id of the column the field should be in.
-   * @param $fields
+   * @param array|null $fields
    *   The fields to use for the columns. If not provided, they will
    *   be requested from the current display. The running render should
    *   send the fields through, as they may be different than what the
    *   display has listed due to access control or other changes.
    *
    * @return array
-   *    An array of all the sanitized columns.
+   *   An array of all the sanitized columns.
    */
-  public function sanitizeColumns($columns, $fields = NULL) {
+  public function sanitizeColumns(array $columns, $fields = NULL) {
     $sanitized = [];
     if ($fields === NULL) {
       $fields = $this->displayHandler->getOption('fields');
     }
-    // Preconfigure the sanitized array so that the order is retained.
+    // Pre-configure the sanitized array so that the order is retained.
     foreach ($fields as $field => $info) {
       // Set to itself so that if it isn't touched, it gets column
       // status automatically.

@@ -47,4 +47,4 @@ script:
   - git clone --depth 1 --branch 8.x-3.x-dev https://github.com/ericpugh/drupal-views-bootstrap.git views_bootstrap
   - ln -s $TRAVIS_BUILD_DIR
   - cd ../
-  - ./vendor/bin/phpunit -c core modules/views_bootstrap/tests/src/Unit
+#  - ./vendor/bin/phpunit -c core modules/views_bootstrap/tests/src/Unit

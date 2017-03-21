@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Definition of Drupal\views_bootstrap\Plugin\views\style\ViewsBootstrapListGroup.
- */
 
 namespace Drupal\views_bootstrap\Plugin\views\style;
 
@@ -23,13 +19,18 @@ use Drupal\views\Plugin\views\style\StylePluginBase;
  * )
  */
 class ViewsBootstrapListGroup extends StylePluginBase {
+
   /**
    * Overrides \Drupal\views\Plugin\views\style\StylePluginBase::usesRowPlugin.
+   *
+   * @var bool
    */
   protected $usesRowPlugin = TRUE;
 
   /**
    * Overrides \Drupal\views\Plugin\views\style\StylePluginBase::usesRowClass.
+   *
+   * @var bool
    */
   protected $usesRowClass = TRUE;
 
@@ -61,4 +62,5 @@ class ViewsBootstrapListGroup extends StylePluginBase {
     ];
 
   }
+
 }

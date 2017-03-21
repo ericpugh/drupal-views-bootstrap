@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Preprocessors and helper functions to make theming easier.
@@ -16,7 +17,7 @@ use Drupal\views_bootstrap\ViewsBootstrapStyleHelper;
  *   - view: A ViewExecutable object.
  *   - rows: The raw row data.
  */
-function template_preprocess_views_bootstrap_media_object(&$vars) {
+function template_preprocess_views_bootstrap_media_object(array &$vars) {
   $vars['id'] = ViewsBootstrapStyleHelper::getUniqueId($vars['view']);
   $image_class = $vars['view']->style_plugin->options['image_class'];
   $image_field = $vars['view']->style_plugin->options['image_field'];

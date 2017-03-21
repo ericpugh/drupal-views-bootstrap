@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Preprocessors and helper functions to make theming easier.
@@ -16,7 +17,7 @@ use Drupal\views_bootstrap\ViewsBootstrapStyleHelper;
  *   - view: A ViewExecutable object.
  *   - rows: The raw row data.
  */
-function template_preprocess_views_bootstrap_list_group(&$vars) {
+function template_preprocess_views_bootstrap_list_group(array &$vars) {
   $view = $vars['view'];
   $options = $view->style_plugin->options;
   $vars['id'] = ViewsBootstrapStyleHelper::getUniqueId($view);

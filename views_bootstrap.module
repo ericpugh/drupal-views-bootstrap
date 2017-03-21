@@ -1,10 +1,15 @@
 <?php
 
+/**
+ * @file
+ * Custom functions for Views Bootstrap.
+ */
+
 use Drupal\views\Views;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
- *  Implements hook_help().
+ * Implements hook_help().
  */
 function views_bootstrap_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
@@ -46,7 +51,7 @@ function views_bootstrap_theme_registry_alter(&$theme_registry) {
         case 'views_bootstrap_table':
           $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_views_view_table';
           break;
-          
+
         case 'views_bootstrap_accordion':
           $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_views_view_accordion';
           break;
@@ -59,12 +64,10 @@ function views_bootstrap_theme_registry_alter(&$theme_registry) {
           $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_views_view_media_object';
           break;
 
-
         case 'views_bootstrap_list_group':
           $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_views_view_list_group';
           break;
       }
-      
       $theme_registry[$theme]['path'] = $path . '/templates/' . $theme;
       $theme_registry[$theme]['includes'][] = $theme_registry[$theme]['path'] . '/theme.inc';
       $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_' . $theme;

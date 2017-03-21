@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Definition of Drupal\views_bootstrap\Plugin\views\style\ViewsBootstrapTable.
- */
-
 namespace Drupal\views_bootstrap\Plugin\views\style;
 
 use Drupal\Core\Form\FormStateInterface;
@@ -24,6 +19,7 @@ use Drupal\views\Plugin\views\style\Table;
  * )
  */
 class ViewsBootstrapTable extends Table {
+
   /**
    * Definition.
    */
@@ -60,4 +56,5 @@ class ViewsBootstrapTable extends Table {
       ],
     ];
   }
+
 }

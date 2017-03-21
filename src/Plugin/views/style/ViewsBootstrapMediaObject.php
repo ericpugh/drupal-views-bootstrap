@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Definition of Drupal\views_bootstrap\Plugin\views\style\ViewsBootstrapMediaObject.
- */
-
 namespace Drupal\views_bootstrap\Plugin\views\style;
 
 use Drupal\Core\Form\FormStateInterface;
@@ -25,7 +20,7 @@ use Drupal\views\Plugin\views\style\StylePluginBase;
  */
 class ViewsBootstrapMediaObject extends StylePluginBase {
 
-/**
+  /**
    * Does the style plugin for itself support to add fields to it's output.
    *
    * @var bool
@@ -96,5 +91,5 @@ class ViewsBootstrapMediaObject extends StylePluginBase {
     ];
 
   }
-      
+
 }

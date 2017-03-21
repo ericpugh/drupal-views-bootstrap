@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Definition of Drupal\views_bootstrap\Plugin\views\style\ViewsBootstrapAccordion.
- */
-
 namespace Drupal\views_bootstrap\Plugin\views\style;
 
 use Drupal\Core\Form\FormStateInterface;
@@ -43,7 +38,6 @@ class ViewsBootstrapAccordion extends StylePluginBase {
    */
   protected function defineOptions() {
     $options = parent::defineOptions();
-    
     $options['title_field'] = ['default' => []];
 
     return $options;
@@ -54,7 +48,6 @@ class ViewsBootstrapAccordion extends StylePluginBase {
    */
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
     parent::buildOptionsForm($form, $form_state);
-    
     $form['title_field'] = [
       '#type' => 'select',
       '#title' => $this->t('Title field'),
@@ -64,4 +57,5 @@ class ViewsBootstrapAccordion extends StylePluginBase {
       '#description' => $this->t('Select the field that will be used as the title.'),
     ];
   }
+
 }
