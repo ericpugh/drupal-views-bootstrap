@@ -24,6 +24,7 @@ matrix:
 
 branches:
   only:
+    - "8.x-3.x"
     - "8.x-3.x-dev"
 
 env:

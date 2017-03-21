@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ericpugh/drupal-views-bootstrap.svg?branch=master)](https://travis-ci.org/ericpugh/drupal-views-bootstrap)
+[![Build Status](https://travis-ci.org/ericpugh/drupal-views-bootstrap.svg?branch=8.x-3.x)](https://travis-ci.org/ericpugh/drupal-views-bootstrap)
 
 CONTENTS OF THIS FILE
 ---------------------
