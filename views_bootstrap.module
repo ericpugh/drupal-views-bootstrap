@@ -46,18 +46,22 @@ function views_bootstrap_theme_registry_alter(&$theme_registry) {
       switch ($theme) {
         case 'views_bootstrap_grid':
           $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_views_view_grid';
+          insert_preprocess_function_after($theme_registry, $theme, 'template_preprocess', 'template_preprocess_views_view_grid');
           break;
 
         case 'views_bootstrap_table':
           $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_views_view_table';
+          insert_preprocess_function_after($theme_registry, $theme, 'template_preprocess', 'template_preprocess_views_view_table');
           break;
 
         case 'views_bootstrap_accordion':
           $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_views_view_accordion';
+          insert_preprocess_function_after($theme_registry, $theme, 'template_preprocess', 'template_preprocess_views_view_accordion');
           break;
 
         case 'views_bootstrap_carousel':
           $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_views_view_carousel';
+          insert_preprocess_function_after($theme_registry, $theme, 'template_preprocess', 'template_preprocess_views_view_carousel');
           break;
 
         case 'views_bootstrap_media_object':
@@ -70,7 +74,38 @@ function views_bootstrap_theme_registry_alter(&$theme_registry) {
       }
       $theme_registry[$theme]['path'] = $path . '/templates/' . $theme;
       $theme_registry[$theme]['includes'][] = $theme_registry[$theme]['path'] . '/theme.inc';
-      $theme_registry[$theme]['preprocess functions'][] = 'template_preprocess_' . $theme;
+      insert_preprocess_function_after($theme_registry, $theme, 'template_preprocess', 'template_preprocess_'.$theme);
     }
   }
+}
+
+/**
+ * Insert new preprocess function into theme registry after existing hooks
+ * who start by $hook_search
+ *
+ * @param $theme_registry
+ * @param $theme
+ * @param $hook_search
+ * @param $new_hook
+ */
+function insert_preprocess_function_after(&$theme_registry, $theme, $hook_search, $new_hook) {
+    $registry = &$theme_registry[$theme]['preprocess functions'];
+
+    $new_array = array();
+    $is_found = false;
+    foreach ($registry as $key => $preprocess_name) {
+        if(preg_match("#^".$hook_search."#", $preprocess_name)) {
+            array_push($new_array, $preprocess_name);
+            $is_found = true;
+          } else {
+            if ($is_found) {
+                array_push($new_array, $new_hook);
+                $is_found = false;
+              } else {
+                array_push($new_array, $preprocess_name);
+              }
+     }
+   }
+
+  $registry = $new_array;
 }
