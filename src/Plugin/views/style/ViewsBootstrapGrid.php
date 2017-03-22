@@ -14,8 +14,9 @@ use Drupal\Component\Utility\Html;
  * @ViewsStyle(
  *   id = "views_bootstrap_grid",
  *   title = @Translation("Bootstrap Grid"),
- *   help = @Translation(""),
+ *   help = @Translation("Displays rows in a Bootstrap Grid layout"),
  *   theme = "views_bootstrap_grid",
+ *   theme_file = "bootstrap_views.theme.inc",
  *   display_types = {"normal"}
  * )
  */

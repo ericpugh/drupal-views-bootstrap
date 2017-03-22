@@ -15,6 +15,7 @@ use Drupal\views\Plugin\views\style\StylePluginBase;
  *   title = @Translation("Bootstrap Carousel"),
  *   help = @Translation("Displays rows in a Bootstrap Carousel."),
  *   theme = "views_bootstrap_carousel",
+ *   theme_file = "bootstrap_views.theme.inc",
  *   display_types = {"normal"}
  * )
  */
