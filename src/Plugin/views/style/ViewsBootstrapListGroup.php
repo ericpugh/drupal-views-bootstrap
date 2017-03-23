@@ -15,7 +15,7 @@ use Drupal\views\Plugin\views\style\StylePluginBase;
  *   title = @Translation("Bootstrap List Group"),
  *   help = @Translation("Displays rows in a Bootstrap List Group."),
  *   theme = "views_bootstrap_list_group",
- *   theme_file = "bootstrap_views.theme.inc",
+ *   theme_file = "../views_bootstrap.theme.inc",
  *   display_types = {"normal"}
  * )
  */

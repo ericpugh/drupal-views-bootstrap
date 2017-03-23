@@ -16,7 +16,7 @@ use Drupal\Core\Render\Element;
  *   title = @Translation("Bootstrap Tab"),
  *   help = @Translation("Displays rows in Bootstrap Tabs."),
  *   theme = "views_bootstrap_tab",
- *   theme_file = "bootstrap_views.theme.inc",
+ *   theme_file = "../views_bootstrap.theme.inc",
  *   display_types = {"normal"}
  * )
  */

@@ -15,7 +15,7 @@ use Drupal\views\Plugin\views\style\StylePluginBase;
  *   title = @Translation("Bootstrap Media Object"),
  *   help = @Translation("Displays rows in a Bootstrap Media Object."),
  *   theme = "views_bootstrap_media_object",
- *   theme_file = "bootstrap_views.theme.inc",
+ *   theme_file = "../views_bootstrap.theme.inc",
  *   display_types = {"normal"}
  * )
  */
