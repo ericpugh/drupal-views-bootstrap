@@ -6,6 +6,7 @@
  */
 
 use Drupal\views_bootstrap\ViewsBootstrap;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Prepares variables for views accordion templates.
@@ -146,6 +147,39 @@ function template_preprocess_views_bootstrap_media_object(array &$vars) {
 }
 
 /**
+ * Prepares variables for views tab templates.
+ *
+ * Default template: views-bootstrap-tab.html.twig.
+ *
+ * @param array $vars
+ *   An associative array containing:
+ *   - view: A ViewExecutable object.
+ *   - rows: The raw row data.
+ */
+function template_preprocess_views_bootstrap_tab(array &$vars) {
+  $vars['id'] = ViewsBootstrap::getUniqueId($vars['view']);
+  $view = $vars['view'];
+  $tab_field = $view->style_plugin->options['tab_field'];
+  $vars['tab_type'] = $view->style_plugin->options['tab_type'];
+  $vars['justified'] = $view->style_plugin->options['justified'];
+
+  // Get tabs.
+  if (isset($view->field[$tab_field])) {
+    foreach (array_keys($vars['rows']) as $key) {
+      $vars['tabs'][$key] = $view->style_plugin->getFieldValue($key, $tab_field);
+    }
+  }
+  foreach ($vars['rows'] as $id => $row) {
+    $vars['rows'][$id] = array();
+    $vars['rows'][$id]['content'] = $row;
+    $vars['rows'][$id]['attributes'] = new Attribute();
+    if ($row_class = $view->style_plugin->getRowClass($id)) {
+      $vars['rows'][$id]['attributes']->addClass($row_class);
+    }
+  }
+}
+
+/**
  * Prepares variables for views table templates.
  *
  * Default template: views-bootstrap-table.html.twig.
@@ -162,3 +196,4 @@ function template_preprocess_views_bootstrap_table(array &$vars) {
     $vars['attributes']['class'][] = 'table-' . $style;
   }
 }
+
