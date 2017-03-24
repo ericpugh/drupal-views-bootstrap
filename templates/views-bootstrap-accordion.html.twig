@@ -5,14 +5,14 @@
         <h4 class="panel-title">
           <a class="accordion-toggle"
              data-toggle="collapse"
-             data-parent="#views-bootstrap-accordion"
-             href="#collapse-{{key}}">
+             data-parent="#{{ id }}"
+             href="#{{ id }}-collapse-{{ key }}">
             {{row.title}}
           </a>
         </h4>
       </div>
 
-      <div id="collapse-{{key}}" class="panel-collapse collapse">
+      <div id="{{ id }}-collapse-{{ key }}" class="panel-collapse collapse">
         <div class="panel-body">
           {{row.content}}
         </div>

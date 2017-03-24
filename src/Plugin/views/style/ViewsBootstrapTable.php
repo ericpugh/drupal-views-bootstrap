@@ -15,6 +15,7 @@ use Drupal\views\Plugin\views\style\Table;
  *   title = @Translation("Bootstrap Table"),
  *   help = @Translation("Displays rows in a Bootstrap table."),
  *   theme = "views_bootstrap_table",
+ *   theme_file = "../views_bootstrap.theme.inc",
  *   display_types = {"normal"}
  * )
  */
