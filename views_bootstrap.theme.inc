@@ -21,12 +21,23 @@ use Drupal\Core\Template\Attribute;
 function template_preprocess_views_bootstrap_accordion(array &$vars) {
   $view = $vars['view'];
   $vars['id'] = ViewsBootstrap::getUniqueId($view);
-  $title_field = $view->style_plugin->options['title_field'];
+  $panel_title_field = $view->style_plugin->options['panel_title_field'];
   $vars['attributes']['class'][] = 'panel-group';
-  foreach ($vars['rows'] as $id => $row) {
-    $vars['rows'][$id] = [];
-    $vars['rows'][$id]['content'] = $row;
-    $vars['rows'][$id]['title'] = $view->style_plugin->getField($id, $title_field);
+  if ($panel_title_field) {
+    foreach ($vars['rows'] as $id => $row) {
+      $vars['rows'][$id] = [];
+      $vars['rows'][$id]['content'] = $row;
+      $vars['rows'][$id]['title'] = $view->style_plugin->getFieldValue($id, $panel_title_field);
+    }
+  }
+  else {
+    // @TODO: This would be better as valdiation errors on the style plugin options form.
+    drupal_set_message(t('@style style will not display without the "@field" setting.',
+      [
+        '@style' => $view->style_plugin->definition['title'],
+        '@field' => 'Panel title',
+      ]
+    ), 'warning');
   }
   // @TODO: Make sure that $vars['rows'] is rendered array.
   // @SEE: Have a look template_preprocess_views_view_unformatted()
@@ -164,18 +175,29 @@ function template_preprocess_views_bootstrap_tab(array &$vars) {
   $vars['justified'] = $view->style_plugin->options['justified'];
 
   // Get tabs.
-  if (isset($view->field[$tab_field])) {
-    foreach (array_keys($vars['rows']) as $key) {
-      $vars['tabs'][$key] = $view->style_plugin->getFieldValue($key, $tab_field);
+  if ($tab_field) {
+    if (isset($view->field[$tab_field])) {
+      foreach (array_keys($vars['rows']) as $key) {
+        $vars['tabs'][$key] = $view->style_plugin->getFieldValue($key, $tab_field);
+      }
+    }
+    foreach ($vars['rows'] as $id => $row) {
+      $vars['rows'][$id] = array();
+      $vars['rows'][$id]['content'] = $row;
+      $vars['rows'][$id]['attributes'] = new Attribute();
+      if ($row_class = $view->style_plugin->getRowClass($id)) {
+        $vars['rows'][$id]['attributes']->addClass($row_class);
+      }
     }
   }
-  foreach ($vars['rows'] as $id => $row) {
-    $vars['rows'][$id] = array();
-    $vars['rows'][$id]['content'] = $row;
-    $vars['rows'][$id]['attributes'] = new Attribute();
-    if ($row_class = $view->style_plugin->getRowClass($id)) {
-      $vars['rows'][$id]['attributes']->addClass($row_class);
-    }
+  else {
+    // @TODO: This would be better as valdiation errors on the style plugin options form.
+    drupal_set_message(t('@style style will not display without the "@field" setting.',
+      [
+        '@style' => $view->style_plugin->definition['title'],
+        '@field' => 'Tab title',
+      ]
+    ), 'warning');
   }
 }
 

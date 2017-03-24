@@ -4,7 +4,7 @@ namespace Drupal\views_bootstrap\Plugin\views\style;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\Plugin\views\style\StylePluginBase;
-use Drupal\Core\Render\Element;
+use Drupal\views_bootstrap\ViewsBootstrap;
 
 /**
  * Style plugin to render each item in an ordered or unordered list.
@@ -51,19 +51,12 @@ class ViewsBootstrapTab extends StylePluginBase {
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
     parent::buildOptionsForm($form, $form_state);
     if (isset($form['grouping'])) {
-      // Get field names from grouping form field as tab_field options.
-      $options = [];
-      foreach (Element::children($form['grouping']) as $key => $value) {
-        if (!empty($form['grouping'][$key]['field']['#options']) && is_array($form['grouping'][$key]['field']['#options'])) {
-          $options = array_merge($options, $form['grouping'][$key]['field']['#options']);
-        }
-      }
       unset($form['grouping']);
 
       $form['tab_field'] = [
         '#type' => 'select',
         '#title' => $this->t('Tab field'),
-        '#options' => $options,
+        '#options' => $this->displayHandler->getFieldLabels(TRUE),
         '#required' => TRUE,
         '#default_value' => $this->options['tab_field'],
         '#description' => t('Select the field that will be used as the tab.'),
