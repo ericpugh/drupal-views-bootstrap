@@ -71,13 +71,21 @@ function template_preprocess_views_bootstrap_carousel(array &$vars) {
   $image = $view->style_plugin->options['image'];
   $title = $view->style_plugin->options['title'];
   $description = $view->style_plugin->options['description'];
+  $fieldLabels = $view->display_handler->getFieldLabels(TRUE);
 
   foreach ($vars['rows'] as $id => $row) {
     $vars['rows'][$id] = [];
     $vars['rows'][$id]['image'] = $view->style_plugin->getField($id, $image);
     $vars['rows'][$id]['title'] = $view->style_plugin->getField($id, $title);
     $vars['rows'][$id]['description'] = $view->style_plugin->getField($id, $description);
+    // Add any additional fields to result.
+    foreach (array_keys($fieldLabels) as $label) {
+      if (!in_array($label, [$image, $title, $description])) {
+        $vars['rows'][$id][$label] = $view->style_plugin->getField($id, $label);
+      }
+    }
   }
+
 }
 
 /**
